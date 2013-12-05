@@ -1,0 +1,15 @@
+# Command to run in a console to handle the log messages coming form the AndOfflineApp running on phone
+# and redirect them to a file named 'andofflinePhone.txt' (you can change that name)
+# that file will be placed in the current folder. If you want. you can provide a full path where place 'andofflinePhone.txt' file. 
+
+
+# 1) version for *nix operating system. Execute this in a shell command
+./adb logcat -s AndOfflineSmsProcessor > andofflinePhone.txt
+
+(If "adb" is configured in the PATH will be: adb logcat -s AndOfflineSmsProcessor > andofflinePhone.txt )
+
+# 2) version for Windows operating system. Execute this in a command prompt
+adb logcat -s AndOfflineSmsProcessor > andofflinePhone.txt
+
+# IMPORTANT: don't close the console/prompt where you run it !
+# Remember to enable the "debug USB" on the phone before run it !

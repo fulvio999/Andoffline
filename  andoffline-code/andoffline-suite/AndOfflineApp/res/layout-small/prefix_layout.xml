@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/prefixTableLayout"    
+    android:layout_height="fill_parent" >
+    <!-- android:stretchColumns="2" --> <!-- to stretch the second column -->
+   
+    <TableRow
+        android:id="@+id/tableRow1"        
+        android:layout_height="wrap_content"
+        android:padding="5dp" >
+ 
+        <TextView 
+		     android:id="@+id/prefixLabel"
+		     android:layout_width="wrap_content"
+		     android:layout_height="wrap_content"
+		     android:text="@string/prefix_label_text" /> 
+
+        <EditText
+            android:id="@+id/prefixInputText"
+            android:layout_width="162dp"
+            android:layout_height="wrap_content"           
+            android:inputType="text" />
+
+            <requestFocus />
+        
+    </TableRow>
+ 
+  
+ 
+    <!-- just draw a red line -->
+    <View        
+        android:layout_height="3dp"
+        android:background="#3ca9d0" 
+        android:paddingTop="@dimen/paddingSepartator"
+        android:paddingBottom="@dimen/paddingSepartator" />
+  
+ 
+</TableLayout>

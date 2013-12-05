@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<smses count="9">
+  <sms protocol="0" address="+393895866317" date="1296815329160" type="1" subject="null" body="Hello world " toa="null" sc_toa="null" service_center="+3914567899" read="1" status="-1" locked="0" />
+  <sms protocol="0" address="+393351459398" date="1299497811159" type="1" subject="null" body="Good Morning and and good luck" toa="null" sc_toa="null" service_center="+3967890000" read="1" status="-1" locked="0" />
+  <sms protocol="0" address="3355433998" date="1299501335394" type="2" subject="null" body="I love you baby !" toa="null" sc_toa="null" service_center="null" read="1" status="-1" locked="0" />
+  <sms protocol="0" address="+393344559398" date="1299501561197" type="1" subject="null" body="Bla Bla Bla and another Bla Bla" toa="null" sc_toa="null" service_center="+395554441" read="1" status="-1" locked="0" />
+  <sms protocol="0" address="+394895831397" date="1299573985539" type="1" subject="null" body="Please Call me in the morning..." toa="null" sc_toa="null" service_center="+39333444290" read="1" status="-1" locked="0" />
+  <sms protocol="0" address="+391133559398" date="1299598420784" type="1" subject="null" body="See you later. Bye Bye" toa="null" sc_toa="null" service_center="+3998765432" read="1" status="-1" locked="0" />
+  <sms protocol="0" address="3355939877" date="1299599030588" type="2" subject="null" body="Have a good day ! from Billy" toa="null" sc_toa="null" service_center="null" read="1" status="-1" locked="0" />
+  <sms protocol="0" address="3355939888" date="1300097929740" type="2" subject="null" body="I'm busy... sorry" toa="null" sc_toa="null" service_center="null" read="1" status="-1" locked="0" />
+  <sms protocol="0" address="3355939888" date="1302696870616" type="2" subject="null" body="Enjoy. thanks for the downloading of Andoofline tool !!" toa="null" sc_toa="null" service_center="null" read="1" status="-1" locked="0" />
+</smses>
