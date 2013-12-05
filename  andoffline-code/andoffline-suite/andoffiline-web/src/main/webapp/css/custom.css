@@ -1,0 +1,125 @@
+.border {
+		border-width: 1px;
+		border-style: solid;
+		border-color: blue;
+		padding:10px;
+}
+		
+.error {
+	color: red; 
+	}
+	
+.expiredRevenueshare {	
+	font-weight:bold;	
+	background-color: #C34941;	
+}	
+	
+/*  Override a struts style for showing in red the error messages */
+.errorMessage {
+	color:red;
+	font-weight:bold;
+	text-align:center;
+}
+
+.errorMessageSpring {
+	color:red;
+	font-weight:bold;
+	text-align:center;
+	font-size:13px;
+	text-align:left;
+}
+
+.fatalErrorMessageSpring{
+	color:red;
+	font-weight:bold;
+	text-align:center;
+	font-size:18px;
+}
+
+.infoMessage {
+	color:blue;
+	font-weight:bold;
+	text-align:center;
+	font-size:14px;
+}
+
+
+.customButton {    
+    color: #444;
+    display: block;   
+    font: normal 12px arial, sans-serif;
+    height: 25px;
+    width:130px;
+    margin-right: 12px;
+    padding-right: 12px; /* sliding doors padding */
+    text-decoration: none;
+}
+
+.customMultiChoser {
+	height: 250px;
+	margin-right: 20px;
+	padding-right: 20px;
+}
+
+.invisibleButton {
+	background-color: #FFFFFF;
+	border-style: none;
+	border-color: #FFFFFF;
+}
+
+/* class used to hide a button  */
+.headerStyle {
+	width: 100%;
+	height:40%;
+	background-color: #B9D5D0;	
+}
+
+.footerStyle {
+	width: 100%;
+	height:15px;
+	background-color: #B9D5D0;
+}
+
+.title {	
+	font-family:"Times New Roman", Times, serif;
+	font-size:20px;	
+}
+
+.subtitle {
+	font-style:oblique;	
+}
+
+.messageHeader {	
+	vertical-align: middle; 
+	font-size:13px;	
+	font-weight:bold;
+}
+
+#loading { display:none; }
+
+#loading { 	
+	position:fixed;
+	left:50%;
+	top:50%;
+	width:200%;
+	height:200%;		
+}
+
+.custom-select {
+   background: white;
+   width: 250px;
+   padding: 0px;
+   font-size: 13px;
+   border: 2px solid #ccc;
+   height: 150px;
+}
+
+.base-select {
+   background: white;
+   width: 150px;
+   padding: 0px;
+   font-size: 13px;
+   border: 2px solid #ccc;
+   height: 25px;
+}
+

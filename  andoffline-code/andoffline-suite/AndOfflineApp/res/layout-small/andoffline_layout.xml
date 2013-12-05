@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical"        
+    tools:context=".AndOfflineMainActivity" >
+    
+    <!-- Include the layout in prefix_layout.xml -->
+    <include
+        android:id="@+id/prefixTableLayout"
+        android:layout_width="match_parent"
+        layout="@layout/prefix_layout" />
+    
+    <Button
+        android:id="@+id/start_receiver_button"
+        style="@style/ButtonTheme" 
+        android:padding="2dp"       
+        android:text="@string/start_receiver_text" />
+    
+    <Button
+        android:id="@+id/stop_receiver_button"
+        style="@style/ButtonTheme" 
+        android:padding="2dp"        
+        android:text="@string/stop_receiver_text" />
+
+    <TextView
+        android:id="@+id/serviceStatusLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center" 
+        android:text="@string/service_status_label"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+     
+
+</LinearLayout>

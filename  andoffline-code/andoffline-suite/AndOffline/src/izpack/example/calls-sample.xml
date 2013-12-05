@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<calls count="7">
+  <call number="024567555" duration="26" date="1314350424904" type="2" />
+  <call number="+3912345567" duration="0" date="1314179616626" type="3" />
+  <call number="424242" duration="42" date="1314085569287" type="2" />
+  <call number="34998765" duration="0" date="1313584058440" type="2" />
+  <call number="34053213" duration="0" date="1313583949470" type="2" />
+  <call number="0334569" duration="7" date="1313169811926" type="2" />
+  <call number="+3954326888" duration="10" date="1313155898670" type="1" />  
+</calls>

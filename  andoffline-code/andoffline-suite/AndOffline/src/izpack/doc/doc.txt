@@ -1,0 +1,19 @@
+-----------------------------
+HOW TO RUN THE APPLICATION:
+-----------------------------
+
+--- To run the application is MANDATORY:
+1) have a working installation of the Java JRE (See: http://www.java.com/it/download/)
+2) If you want use the 'Phone manager' features you must install the Android sdk (http://developer.android.com/sdk/index.html  'SDK Tools Only')
+
+--- under Unix-like operating systems must set the executable permission (if not set) of the AndOffline-xx.jar file 
+
+
+--- To execute the application:
+- Execute run.bat under Windows OS (if you are under windows OS or run.sh if you use Unix-like OS). 
+- Execute run.sh under Unix (can be necessary set the execution bit)
+If one of the above method doesn't work, run: java -jar AndOffline-xx.jar 
+
+
+
+*** See the files under the example folder for sample input sms, log call and vcf files managed by this tool ***

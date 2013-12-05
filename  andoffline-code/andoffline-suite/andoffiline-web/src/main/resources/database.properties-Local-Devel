@@ -1,0 +1,19 @@
+# Database(s) configuration file for the two supported DBMS used only for localhost development to run the web application
+
+# LOACALHOST - MYSQL
+dbHost_mysql=localhost
+dbName_mysql=andoffline
+dbPort_mysql=3306
+dbUser_mysql=root
+dbPassword_mysql=
+jdbcUrl_mysql=jdbc:mysql://
+
+
+
+# LOACALHOST  - SQLITE
+dbHost_sqlite=localhost
+dbName_sqlite=andoffline
+dbPort_sqlite=3306
+dbUser_sqlite=root
+dbPassword_sqlite=
+jdbcUrl_sqlite=jdbc:mysql://

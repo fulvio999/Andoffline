@@ -1,0 +1,294 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+
+  <parent>
+    <artifactId>andoffline-suite</artifactId>
+    <groupId>andoffline</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <groupId>andoffline.core</groupId>
+  <artifactId>andOffline-core</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
+
+  <properties>
+     <!-- The subfolder of "target" one where place the resources that IzPack need to build the his installer -->
+     <staging.dir>${project.build.directory}/staging</staging.dir> 
+     <staging.dir.lib>${project.build.directory}/staging/lib</staging.dir.lib>
+  	 <izpack-standalone.version>4.3.1</izpack-standalone.version>  	 
+  </properties>
+
+  <dependencies>  
+        
+	  <dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>
+	      <version>3.8.1</version>
+	      <scope>test</scope>
+	  </dependency>
+	   
+	  <!-- The izPack graphical installer builder -->  
+	  <dependency>
+	      <groupId>org.codehaus.izpack</groupId>
+	      <artifactId>izpack-standalone-compiler</artifactId>
+	      <version>${izpack-standalone.version}</version>
+	      <optional>true</optional>
+      </dependency>	    
+	    
+	  <dependency>
+		  <groupId>log4j</groupId>
+		  <artifactId>log4j</artifactId>
+		  <version>1.2.14</version>
+	  </dependency>	    
+	
+	  <dependency>
+	      <groupId>commons-codec</groupId>
+	      <artifactId>commons-codec</artifactId>
+	      <version>1.5</version>
+	  </dependency>
+	  
+	  <dependency>
+		 <groupId>commons-lang</groupId>
+		 <artifactId>commons-lang</artifactId>
+		 <version>2.3</version>
+	  </dependency>
+
+	  <dependency>
+	     <groupId>commons-io</groupId>
+	     <artifactId>commons-io</artifactId>
+	     <version>2.4</version>
+	  </dependency>
+	  
+	  <dependency>
+	  	  <groupId>com.itextpdf</groupId>
+	  	  <artifactId>itextpdf</artifactId>
+	  	  <version>5.1.3</version>
+	  </dependency>
+	  
+	 <dependency>
+		<groupId>org.swinglabs</groupId>
+		<artifactId>swingx</artifactId>
+		<version>1.6.1</version>
+	 </dependency>	   
+	   
+	  <!-- Layout library --> 
+	  <dependency>
+	  	 <groupId>com.miglayout</groupId>
+	  	 <artifactId>miglayout-swing</artifactId>
+	  	 <version>4.2</version>
+	  </dependency>
+   
+	   <!-- A framework for Twitter API integration -->
+	   <dependency>
+	      <groupId>org.twitter4j</groupId>
+	      <artifactId>twitter4j-core</artifactId>
+	      <version>2.2.5</version>
+	   </dependency>
+	   
+	   <!-- jdbc driver for sqlite -->
+	   <dependency>
+			<groupId>org.xerial</groupId>
+			<artifactId>sqlite-jdbc</artifactId>
+			<version>3.7.2</version>
+	   </dependency>
+	   
+	   <dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>[5.1,)</version> <!-- A version greater or equals at 5.1 -->			
+	   </dependency>
+	   
+	   <dependency>
+		   <groupId>org.apache.commons</groupId>
+		   <artifactId>commons-email</artifactId>
+		   <version>1.2</version>
+	   </dependency>
+
+	   <dependency>
+		  <groupId>javamail</groupId>
+		  <artifactId>javamail</artifactId>
+		  <version>1.3.2</version>
+	   </dependency>
+	   
+	  <!-- To execute script and shell commands from java -->
+      <dependency>
+         <groupId>org.codehaus.plexus</groupId>
+         <artifactId>plexus-utils</artifactId>
+         <version>3.0.9</version>
+      </dependency>
+ 
+  </dependencies>
+
+  <build>
+     
+	    <resources>
+			<resource>
+				<directory>src/main/resources/icons</directory>
+				<filtering>false</filtering>
+				<includes>				
+					<include>*.png</include> <!-- various icons -->
+					<include>*.gif</include> <!-- startup splash screen --> 					
+				</includes>
+			</resource>				
+			
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<includes>	
+				    <!-- Configuration files for Twitter4j, Jetty, Log4j, database -->			
+					<include>*.properties</include> 					
+				</includes>
+				<excludes>
+				     <!-- Note: this file is NOT included in this step because it must be filtered by izPack (See Install.xml file) -->
+					 <exclude>log4j.properties</exclude>
+				</excludes>
+			</resource>					
+		</resources>		 
+     
+	    <plugins>
+		
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>				
+			</plugin>
+			
+			<!-- Configure the jar plugin to create a Manifest file with custom classpath entry to pick-up jars under "lib" folder -->
+	        <plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-jar-plugin</artifactId>		        
+		        <configuration>
+		            <archive>
+  		               <manifest>
+				 			<mainClass>andoffline.init.StartApp</mainClass>
+				 			<classpathPrefix>lib/</classpathPrefix>
+				 			<!-- To append at the "Class-path" entry in the Manifest file all the jar names listed as dependency -->
+				 			<addClasspath>true</addClasspath>				 			
+		               </manifest>
+		               <!-- Add a custom entry in the manifest -->		               
+					   <manifestEntries> 
+					       <!-- The splash screen shown on application startup -->
+					       <SplashScreen-Image>splash.gif</SplashScreen-Image>
+					   	   <!-- Include the jar with API to start/stop the server from Java code -->
+					       <Class-Path>web-app/andoffline-server-mngr.jar</Class-Path>
+					   </manifestEntries>					   
+		            </archive>
+		        </configuration>
+	        </plugin>		        
+	      
+	       <plugin>
+			   <groupId>org.apache.maven.plugins</groupId>
+			   <artifactId>maven-compiler-plugin</artifactId>
+			   <configuration>
+				  <source>1.5</source>
+				  <target>1.5</target>
+			   </configuration>
+		   </plugin>  		   
+		   
+		   <!-- 
+		       Copy the project dependencies from the m2 local repository to a defined location (ie /staging/lib folder) 
+		       to be picked-up by IzPack
+		   -->
+		   <plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-dependency-plugin</artifactId>
+		        <executions>
+		           <execution>
+		             <id>copy-dependencies</id>
+		             <phase>package</phase>
+		             <goals>
+		                 <goal>copy-dependencies</goal>
+		             </goals>
+		             <configuration> 
+		                <!-- exclude the jars used by web application and already presents in the war file -->
+ 		                <excludeGroupIds>org.apache.tomcat,org.apache.tomcat.embed,org.springframework,mysql,displaytag,org.apache.struts,com.opensymphony,com.jgeppert.struts2.jquery,com.opensymphony,org.apache.oro,org.apache.tiles,junit</excludeGroupIds> 
+		                <outputDirectory>${basedir}/src/izpack/lib</outputDirectory>
+<!-- 		                <overWriteReleases>true</overWriteReleases> -->
+<!-- 		                <overWriteSnapshots>true</overWriteSnapshots> -->
+
+		             </configuration>
+		           </execution>
+		        </executions>
+		    </plugin>		   
+		   
+		   <!-- 
+		   		Copy the folder "izpack" from the project source tree to the "staging directory" (ie ${staging.dir}) under the target folder. 
+		   		It that folder, "install.xml" file expect the resources to be processed by IzPack to build the installer.
+		   		Configure Install.xml file to indicates the resources to use.
+		   -->
+	       <plugin>
+	          <artifactId>maven-antrun-plugin</artifactId>
+	          <version>1.1</version>
+	          <executions>
+	            <execution>
+	              <id>create-staging-area</id>
+	              <phase>process-resources</phase>
+	              <goals>
+	                  <goal>run</goal>
+	              </goals>
+	              <configuration>
+	                  <tasks>
+	                
+		                  <!-- Step 1: insert in "izpack" folder the configuration files of this project placed in src/main/resource -->
+		                  <copy todir="${basedir}/src/izpack/conf">
+	                		  <fileset dir="src/main/resources" includes="*.properties"/>
+	             		  </copy>
+	             		  
+	             		  <!-- Step 2: Copy the dependency (jar files) of this project to the izpack staging "lib" folder -->
+		             	  <copy todir="${staging.dir.lib}">
+	                		  <fileset dir="${basedir}/src/izpack/lib" includes="*.jar"/>
+	             		  </copy>  
+		                
+		                  <!-- Step 3: move the full "izpack" folder (and his subfolder) to the izpack staging folder placed under the "target" one used by izpack-maven-plugin -->
+		                  <copy todir="${staging.dir}">
+		                     <fileset dir="${basedir}/src/izpack" />
+		                  </copy>
+	                  
+	                 </tasks>
+	              </configuration>
+	            </execution>
+	          </executions>
+
+	     </plugin>
+		   
+	<!-- ******************************* IzPack configuration and Installer building ********************************************** -->
+		   
+		   <!-- A maven plugin that read the IZpack "install.xml" file to create the installer (the jar file with the wizard gui) with the resources found in "target/staging" folder -->
+           <plugin>
+	          <groupId>org.codehaus.izpack</groupId>
+	          <artifactId>izpack-maven-plugin</artifactId>
+	          <version>1.0-alpha-5</version>
+	          
+	          <dependencies>
+	             <dependency>
+	                <groupId>org.codehaus.izpack</groupId>	             
+	                <artifactId>izpack-standalone-compiler</artifactId>
+	                <version>${izpack-standalone.version}</version>
+	             </dependency>
+	          </dependencies>
+	          
+	          <configuration>
+	             <!-- the folder under the directory "target" where izpack expect the resources (license, sources, doc...) previously copied by ant task -->
+	             <izpackBasedir>${staging.dir}</izpackBasedir>
+	             <customPanelDirectory>${staging.dir}</customPanelDirectory>
+	          </configuration>
+	          
+	          <executions>
+	            <execution>
+	              <id>standard-installer</id>
+	              <phase>package</phase>
+	              <goals>
+	                 <goal>izpack</goal>
+	              </goals>
+	            </execution>
+	          </executions>
+	          
+           </plugin>		  
+			
+		</plugins>
+		
+	</build>
+
+</project>

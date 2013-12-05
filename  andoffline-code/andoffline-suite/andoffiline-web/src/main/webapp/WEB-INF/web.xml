@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  
+   <display-name>andoffline</display-name>
+   
+   <!-- The file with the security information for Spring Security -->
+   <context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>			
+			/WEB-INF/applicationContext-security.xml
+			/WEB-INF/andoffline-bean.xml
+		</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name>
+	    <param-value>
+	    	/WEB-INF/tiles-templates/tiles-definitions.xml
+	    </param-value>		
+	</context-param>
+	
+	
+	<!-- NOTE: The Spring security filter must be declared first before other filter -->
+	
+	<!--
+		 This is a Proxy filter that call a bean defined in the SpringContext whose name in specified in "filter-name" 		
+	-->
+	<filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    
+    <filter-mapping>
+      <filter-name>springSecurityFilterChain</filter-name>
+      <url-pattern>/*</url-pattern>
+    </filter-mapping>
+ 
+   <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+        
+        <init-param>
+     		<param-name>actionPackages</param-name>
+    		<param-value>andoffline.web.action</param-value>
+  	    </init-param>        
+   </filter>
+   
+   
+    <!-- ******** Filter Used by displaytag to rewrite response and export the data in pdf,excel etc. ******** -->			 
+	<filter>
+    	<filter-name>ResponseOverrideFilter</filter-name>
+    	<filter-class>org.displaytag.filter.ResponseOverrideFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+    	<filter-name>ResponseOverrideFilter</filter-name>
+    	<url-pattern>*.action</url-pattern>
+  	</filter-mapping>
+  
+  	<filter-mapping>
+    	<filter-name>ResponseOverrideFilter</filter-name>
+    	<url-pattern>*.jsp</url-pattern>
+  	</filter-mapping>
+  	<!-- ***************************************************************************************************** -->
+   
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern> <!-- The default action is *.action -->
+    </filter-mapping>
+   
+    
+    <listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+	
+	<listener>
+    	<listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
+  	</listener>
+        
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+   
+</web-app>

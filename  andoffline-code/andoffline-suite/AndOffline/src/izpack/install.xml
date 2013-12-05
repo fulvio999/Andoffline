@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+
+<installation version="1.0">
+
+    <!-- The info section -->
+    <info>
+        <!-- The name to assign root folder proposed during the installation -->
+        <appname>AndOffline</appname>
+        <appversion>1.0 beta</appversion>
+        <authors>
+            <author name="fulvio" email="fulvio999@gmail.com"/>           
+        </authors>
+		<!-- <url>mysite</url> -->
+    </info>
+
+    <!-- 
+        The gui preferences indication.
+        Sets the installer window to 640x480. It will not be able to change the size.
+    -->
+    <guiprefs width="640" height="580" resizable="no"/>
+
+    <!-- The locale section -->
+    <locale>
+        <langpack iso3="eng"/>
+        <langpack iso3="ita"/>
+    </locale>
+
+    <!-- 
+        The resources section.
+        The id must be these ones if you want to use the <panels> section LicensePanel and/or the InfoPanel.
+    -->
+    <resources>       
+        <res id="LicencePanel.licence" src="License.txt"/>	
+ 		<res id="InfoPanel.info" src="Readme.txt"/>   		    
+    </resources>
+
+    <!-- 
+        The panels section.
+        We indicate here which panels we want to use. The order will be respected.
+        We can use a custom panel:
+        <panel classname="com.company.izpack.panels.MyHelloPanel"/>
+    -->
+    <panels>        
+        <panel classname="InfoPanel"/>
+        <panel classname="LicencePanel"/>
+        <panel classname="TargetPanel"/>
+        <panel classname="PacksPanel"/>
+        <panel classname="InstallPanel"/>
+        <panel classname="FinishPanel"/>
+    </panels>
+
+   <!-- The core jar created by Maven to include that represents the effective application to deploy -->
+   <jar src="../andOffline-core-1.0.jar"/>
+
+    <!-- 
+        The packs section.
+        Each pack will be presented with a checkbox so that user decide if install or not the pack
+    -->
+      <packs>
+            <pack name="Base" required="yes">
+         
+            <description>The base files</description>
+            
+	 	    <file src="License.txt" targetdir="$INSTALL_PATH"/>            
+	        <file src="Readme.txt" targetdir="$INSTALL_PATH"/>
+	        <file src="run.bat" targetdir="$INSTALL_PATH"/>
+		    <file src="run.sh" targetdir="$INSTALL_PATH"/>	
+		    
+		    <file src="lib" targetdir="$INSTALL_PATH"/>
+		    
+		    <!-- Includes in the installer the "conf", "log" and "web-app" folders -->	    
+		    <file src="conf" targetdir="$INSTALL_PATH"/>
+		    <file src="log" targetdir="$INSTALL_PATH"/>
+		    <file src="web-app" targetdir="$INSTALL_PATH"/>
+		    
+	 	    <!--
+	 	       The file will be parsed by IZPack inserting informations taken a runtime (eg the installation folder) 
+	 	       after the installation.
+	 	       "INSTALL_PATH" is a built-in variables 
+	 	       NOTE: A slash will be changed to the system dependant path separator
+	 	    -->
+	 	    <!-- 
+	 	        Note: with type="javaprop" add the escape file separator only on Windows OS path
+	 	        so that from java is possible use the load() method from Properties which remove the '\' 
+	 	    -->
+	        <parsable targetfile="$INSTALL_PATH/conf/log4j.properties" type="javaprop"/>
+	        <parsable targetfile="$INSTALL_PATH/conf/server.properties" type="javaprop"/>
+	        	        
+	        <!-- The file read by web application to know the location of the database -->
+	        <parsable targetfile="$INSTALL_PATH/web-app/apache-tomcat/conf/andoffline/database-location.properties" type="javaprop"/> 
+	        
+	        <file src="../andOffline-core-1.0.jar" targetdir="$INSTALL_PATH"/> 		   
+        </pack>
+        
+         <!-- Include the folder with the documentation -->
+         <pack name="Docs" required="yes">
+            <description>The documentation</description>
+            <file src="doc" targetdir="$INSTALL_PATH"/>           
+         </pack>
+
+         <!-- Include the folder with example files with sms/call -->
+	     <pack name="Example" required="yes">
+            <description>Some example of input xml and vcf files</description>
+            <file src="example" targetdir="$INSTALL_PATH"/>           
+         </pack>
+        
+         <!-- On *nix the installer jar must be executable -->
+         <executable targetfile="$INSTALL_PATH/andOffline-core-1.0-installer.jar" stage="never">
+	      	 <os name="linux" />
+	     </executable>
+        
+    </packs>
+
+</installation>
