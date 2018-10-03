@@ -22,7 +22,7 @@ Allow to execute job/script execution from SMS sent from remote phone (without i
 - Install the Android App
 - create a job on desktop application
 - start PC listener and Phone receiver
-**See pdf guide under source folder for more details**
+**See pdf file under source folder for more details**
 - web application to manage job/script stored in a relational DB (Mysql or sqlite). The server can be started/stopped with command sms.
 
 
