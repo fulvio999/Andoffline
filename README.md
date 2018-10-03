@@ -1,5 +1,5 @@
 # Andoffline
-A toolkit for some Android sms/call Apps, base64 encoder, vcf parser. 
+A Java Swing gui to offer a support toolkit for some Android sms/call Apps. Also a base64 encoder and vcf parser. 
 
 Moved from my repository: https://sourceforge.net/projects/andoffline/
 
