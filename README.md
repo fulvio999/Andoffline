@@ -25,6 +25,5 @@ Allow to execute job/script execution from SMS sent from remote phone (without i
 **See pdf file under doc folder for more details**
 - web application to manage job/script stored in a relational DB (Mysql or sqlite). The server can be started/stopped with command sms.
 
-
-
-
+![Test Image 4](https://github.com/fulvio999/Andoffline/blob/master/doc/screen1.jpeg
+)
